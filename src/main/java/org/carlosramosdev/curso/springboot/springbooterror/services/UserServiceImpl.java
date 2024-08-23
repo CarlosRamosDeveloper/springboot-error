@@ -2,11 +2,11 @@ package org.carlosramosdev.curso.springboot.springbooterror.services;
 
 import org.carlosramosdev.curso.springboot.springbooterror.exceptions.UserNotFoundException;
 import org.carlosramosdev.curso.springboot.springbooterror.models.domain.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -28,12 +28,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
+    public Optional<User> findById(Long id) {
+        User user = null;
         for (User u : users) {
             if (u.getId().equals(id)) {
-                return u;
+                user = u;
+                break;
             }
         }
-        throw new UserNotFoundException("Error, el usuario no existe");
+
+        if (user == null) {
+            throw new UserNotFoundException("Error, el usuario no existe");
+        }
+        return Optional.of(user);
     }
 }

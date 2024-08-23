@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/app")
 public class AppController {
@@ -24,7 +26,7 @@ public class AppController {
     }
 
     @GetMapping("/show/{id}")
-    public User showUser(@PathVariable(name = "id") Long id){
+    public Optional<User> showUser(@PathVariable(name = "id") Long id){
         return service.findById(id);
     }
 }
