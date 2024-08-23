@@ -25,7 +25,6 @@ public class AppController {
 
     @GetMapping("/show/{id}")
     public User showUser(@PathVariable(name = "id") Long id){
-
         return service.findById(id);
     }
 }

@@ -1,5 +1,6 @@
 package org.carlosramosdev.curso.springboot.springbooterror.services;
 
+import org.carlosramosdev.curso.springboot.springbooterror.exceptions.UserNotFoundException;
 import org.carlosramosdev.curso.springboot.springbooterror.models.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,6 @@ public class UserServiceImpl implements UserService {
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("Error, el usuario no existe");
     }
 }
