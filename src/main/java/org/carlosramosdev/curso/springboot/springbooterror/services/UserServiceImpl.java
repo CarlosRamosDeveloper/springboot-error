@@ -2,6 +2,7 @@ package org.carlosramosdev.curso.springboot.springbooterror.services;
 
 import org.carlosramosdev.curso.springboot.springbooterror.exceptions.UserNotFoundException;
 import org.carlosramosdev.curso.springboot.springbooterror.models.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,16 +12,8 @@ import java.util.Optional;
 @Component
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private List<User> users;
-
-    public UserServiceImpl() {
-        users = new ArrayList<>();
-        users.add(new User(1L,"Pepe","González"));
-        users.add(new User(2L,"Eduardo","Tronco"));
-        users.add(new User(3L,"Manuela","Nuñez"));
-        users.add(new User(4L,"Federico","Constantino"));
-        users.add(new User(5L,"María","Hervás"));
-    }
 
     @Override
     public List<User> findAll() {
